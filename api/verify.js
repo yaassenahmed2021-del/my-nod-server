@@ -8,25 +8,17 @@ export default function handler(req, res) {
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
-}
 
     // 3. التحقق من المفتاح
-    let validKeys = ["PRO-12345", "PRO-67890", "PRO-55555"];
-
-export default function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    
     if (req.method === 'POST') {
         const { key } = req.body;
-        const index = validKeys.indexOf(key);
-
-        if (index !== -1) {
-            // حذف الكود من القائمة ليصبح غير صالح للاستخدام مرة أخرى
-            validKeys.splice(index, 1); 
-            return res.status(200).json({ status: 'success', message: 'تم التفعيل بنجاح!' });
+        // هنا تضع مفاتيحك الصحيحة
+        if (key === "PRO-12345") {
+            return res.status(200).json({ status: 'success' });
         } else {
-            return res.status(401).json({ status: 'error', message: 'الكود غير موجود أو تم استخدامه بالفعل' });
+            return res.status(401).json({ status: 'error', message: 'Invalid key' });
         }
     }
-    return res.status(405).json({ status: 'error', message: 'الطريقة غير مدعومة' });
+
+    return res.status(404).json({ message: 'Not Found' });
 }
