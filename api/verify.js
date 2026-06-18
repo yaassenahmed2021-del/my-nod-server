@@ -13,7 +13,7 @@ export default function handler(req, res) {
     if (req.method === 'POST') {
         const { key } = req.body;
         // هنا تضع مفاتيحك الصحيحة
-        if (key === "PRO-12345") {
+        if (key === "PRO-12345", "yaso0981435") {
             return res.status(200).json({ status: 'success' });
         } else {
             return res.status(401).json({ status: 'error', message: 'Invalid key' });
